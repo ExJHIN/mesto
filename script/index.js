@@ -5,8 +5,8 @@ const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close'); 
 const popupSaveButton = document.querySelector('.form__save');
 
-let nameInput = document.querySelector('.form__input_name'); 
-let jobInput = document.querySelector('.form__input_descr'); 
+let nameInput = document.querySelector('.form__input_text_name'); 
+let jobInput = document.querySelector('.form__input_text_descr'); 
 
 let profileName = document.querySelector('.profile__title'); 
 let profileJob = document.querySelector('.profile__description'); 

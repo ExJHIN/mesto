@@ -13,12 +13,6 @@
   transition: 0.3s ease;
 }
 
-.profile__add-button > img {
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
 .profile__add-button:hover {
   opacity: 0.6;
 }

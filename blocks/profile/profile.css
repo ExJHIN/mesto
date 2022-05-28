@@ -1,5 +1,6 @@
 .profile__body {
   display: flex;
+	margin: 36.25px 0 47.25px 0;
 }
 
 @media (max-width: 768px) {

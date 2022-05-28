@@ -1,10 +1,10 @@
-.header__body {
+.header__line {
 	border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 	padding: 45px 0;
 }
 
 @media (max-width: 768px) {
-	.header__body {
+	.header__line {
 		padding: 30px 0;
 	}
 }
