@@ -1,0 +1,28 @@
+.form__close {
+	position: absolute;
+	width: 32px;
+	height: 32px;
+	top: -35px;
+	right: -35px;
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+.form__close > img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.form__close:hover {
+	opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+	.form__close {
+		width: 20px;
+		height: 20px;
+		right: 0;
+	}
+}
