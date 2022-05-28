@@ -5,6 +5,8 @@ const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close'); 
 const popupSaveButton = document.querySelector('.form__save');
 
+
+let formElement = document.querySelector('.form');
 let nameInput = document.querySelector('.form__input_text_name'); 
 let jobInput = document.querySelector('.form__input_text_descr'); 
 
@@ -24,13 +26,17 @@ function closePopup() {
   popup.classList.remove('popup_opened');
 }
 
-function formSubmitHandler() {
-  profileName.innerText = nameInput.value;
-  profileJob.innerText = jobInput.value;
+function formSubmitHandler(evt) {
+	evt.preventDefault(); 
 
-  closePopup();
+  profileName.textContent = nameInput.value; 
+
+  profileJob.textContent = jobInput.value; 
+
+  closePopup(); 
 }
 
+formElement.addEventListener('submit', formSubmitHandler);
 profileOpenPopupButton.addEventListener('click', openPopup); 
 popupCloseButton.addEventListener('click', closePopup); 
 popupSaveButton.addEventListener('click', formSubmitHandler);
