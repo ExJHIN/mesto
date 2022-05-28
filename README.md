@@ -17,3 +17,5 @@
 * Псевдоклассы CSS
 ### JavaScript
 * JS DOM
+
+[Ссылка на сайт в GITHUB PAGES](https://exjhin.github.io/mesto/)
