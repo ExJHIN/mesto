@@ -11,15 +11,12 @@
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
 
-@import url(../blocks/page/__header/page__header.css);
-@import url(../blocks/page/__footer/page__footer.css);
-@import url(../blocks/page/__profile/page__profile.css);
+
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/content/content.css);
 @import url(../blocks/element/element.css);
-@import url(../blocks//element/__bottom-block/element__bottom-block.css);
-@import url(../blocks/element/__delete-btn/element__delete-btn.css);
+@import url(../blocks/element/__bottom-block/element__bottom-block.css);
 @import url(../blocks/element/__img/element__img.css);
 @import url(../blocks/element/__like-btn/element__like-btn.css);
 @import url(../blocks/elements/elements.css);
@@ -55,8 +52,8 @@
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/__input/form__input.css);
-@import url(../blocks/form/__input/_text/_name/form__input_text_name.css);
-@import url(../blocks/form/__input/_text/_descr/form__input_text_descr.css);
+@import url(../blocks/form/__input/_text/form__input_text_descr.css);
+@import url(../blocks/form/__input/_text/form__input_text_name.css);
 @import url(../blocks/form/__save/form__save.css);
 @import url(../blocks/form/__close/form__close.css);
 

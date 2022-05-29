@@ -21,8 +21,4 @@
   .profile__add-button {
     width: 100%;
   }
-  .profile__add-button > img {
-    width: 18px;
-    height: 18px;
-  }
 }
