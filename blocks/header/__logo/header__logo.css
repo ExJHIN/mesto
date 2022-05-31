@@ -1,6 +1,6 @@
 .header__logo {
-	width: 142px;
-  height: 33px;
+	max-height: 33px;
+	max-width: 142px;
   padding: 0;
 }
 

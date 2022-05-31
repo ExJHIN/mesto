@@ -5,6 +5,8 @@
 	column-gap: 17px;
 	grid-template-rows: auto;
 	margin: 0 auto 60px auto;
+	padding: 0;
+	width: fit-content;
 }
 
 @media (max-width: 640px) {
