@@ -1,3 +1,4 @@
 .element__like-btn_active {
   background: transparent url(../../../../images/element-heart-active.svg);
+  display: block;
 }

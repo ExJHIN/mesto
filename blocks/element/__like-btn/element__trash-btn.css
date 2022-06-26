@@ -1,7 +1,10 @@
-.element__like-btn {
+.element__trash-btn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 	margin: 0 0 3px 0;
 	padding: 0;
-	background: transparent url(../../../images/element-heart.svg);
+	background: transparent url(../../../images/Group.svg);
 	background-size: contain;
 	background-repeat: no-repeat;
 	width: 22px;
@@ -9,10 +12,10 @@
 	border: none;
 	cursor: pointer;
 	transition: 0.3s ease;
-	display: flex;
+	display: block;
 	flex-direction: column;
 }
 
-.element__like-btn:hover {
+.element__trash-btn:hover {
 	opacity: 0.5;
 }

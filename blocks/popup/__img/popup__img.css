@@ -1,0 +1,11 @@
+.popup__img {
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 20px;
+}
