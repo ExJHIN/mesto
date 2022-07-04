@@ -133,10 +133,10 @@ function onCardClick({ name, link, buttons }, evt) {
 	const closeButton = this.querySelector('.popup__close');
 	closeButton.addEventListener('click', closePopup)
 	
-	const open = document.querySelector('.popup_opened');
-	open.addEventListener('click', (_evt) => {
-		open.classList.toggle('popup_opened');
-	});	
+	// const open = document.querySelector('.popup_opened');
+	// open.addEventListener('click', (_evt) => {
+	// 	open.classList.toggle('popup_opened');
+	// });	
 }
 
 	
