@@ -24,7 +24,7 @@ const addingCardlinkInput = addingCardPopupNode.querySelector('.form__input_link
 openButton.addEventListener('click', () => {
 	profileNameInput.value = profileName.textContent;
 	profileDescriptionInput.value = profileDescription.textContent;
-  togglePopup(editProfilePopupNode);
+	togglePopup(editProfilePopupNode);
 });
 closeButton.addEventListener('click', () => togglePopup(editProfilePopupNode));
 submitButton.addEventListener('click', () => {
@@ -50,6 +50,8 @@ function togglePopup(editProfilePopupNode) {
 
 
 
+
+
 // Генерация карточек из массива
 function renderInitialCards(place) {
 	initialCards.forEach((card, index) => {
@@ -59,7 +61,7 @@ function renderInitialCards(place) {
 
 //Получить Card
 function getCardNode({ name, link }) {
-	const card  = document.querySelector('#cardNode').content.cloneNode(true).querySelector('.element');
+	const card = document.querySelector('#cardNode').content.cloneNode(true).querySelector('.element');
 
 	const trashButton = card.querySelector('button');
 	trashButton.addEventListener('click', () => {
@@ -127,7 +129,14 @@ function onCardClick({ name, link, buttons }, evt) {
 	}
 	togglePopup(picturePopup);
 	picturePopupImage.src = link;
-	picturePopupDescription.textContent = name;
+	picturePopupDescription.textContent = name;	
 	const closeButton = this.querySelector('.popup__close');
-	closeButton.addEventListener('click', closePopup);
+	closeButton.addEventListener('click', closePopup)
+	
+	const open = document.querySelector('.popup_opened');
+	open.addEventListener('click', (_evt) => {
+		open.classList.toggle('popup_opened');
+	});	
 }
+
+	
