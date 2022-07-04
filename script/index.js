@@ -1,8 +1,8 @@
-const editProfilePopupNode = document.querySelector('.popup_edit-profile');
-const newCardPopupNode = document.querySelector('.popup_new-place');
+const editProfilePopupNode = document.querySelector('.popup__edit_profile');
+const newCardPopupNode = document.querySelector('.popup__new_place');
 const cardsContainerNode = document.querySelector('.elements');
 
-const picturePopup = document.querySelector('.popup_open-picture');
+const picturePopup = document.querySelector('.popup__open_popup_picture');
 const picturePopupImage = picturePopup.querySelector('.popup__picture');
 const picturePopupDescription = picturePopup.querySelector(
 	'.popup__description'
@@ -31,7 +31,7 @@ const newCardForm = newCardPopupNode.querySelector('.form');
 const addingCardnameInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
-const addingCardlinkInput = newCardPopupNode.querySelector('.form__input_link');
+const addingCardlinkInput = newCardPopupNode.querySelector('.form__input_text_link');
 
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
@@ -98,20 +98,17 @@ function getCardNode({ name, link }) {
 		.content.cloneNode(true)
 		.querySelector('.element');
 
-	const trashButton = card.querySelector('button');
+	const trashButton = card.querySelector('.element__trash-btn');
 	trashButton.addEventListener('click', () => {
 		card.parentNode.removeChild(card);
 	});
-	const img = card.querySelector('img');
+	const img = card.querySelector('.element__img');
 	img.setAttribute('src', link);
 	img.setAttribute('alt', name);
 
-	const bottomBlock = card.querySelector('div');
 
-	const title = card.querySelector('h3');
+	const title = card.querySelector('.element__title');
 	title.textContent = name;
-
-	const likeContainer = card.querySelector('div');
 
 	const likeButton = card.querySelector('.element__like-btn');
 

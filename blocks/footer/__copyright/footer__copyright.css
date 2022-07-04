@@ -9,9 +9,11 @@
   color: #545454;
 }
 
+
 @media screen and (max-width: 480px) {
   .footer__copyright {
     font-size: 14px;
     line-height: 16.94px;
+    margin-left: 19px;
   }
 }

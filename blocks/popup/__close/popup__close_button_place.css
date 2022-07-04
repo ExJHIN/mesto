@@ -1,4 +1,4 @@
-.popup__close-place {
+.popup__close_button_place {
 	position: absolute;
 	width: 32px;
 	height: 32px;
@@ -11,7 +11,7 @@
 }
 
 
-.popup__close-place:hover {
+.popup__close_button_place:hover {
 	opacity: 0.6;
 }
 

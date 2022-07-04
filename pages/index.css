@@ -47,8 +47,8 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__body/popup__body.css);
 @import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/popup/__close-place/popup__close-place.css);
-@import url(../blocks/popup/_open-picture/popup_open-picture.css);
+@import url(../blocks/popup/__close/popup__close_button_place.css);
+@import url(../blocks/popup/__open/popup__open_popup_picture.css);
 @import url(../blocks/popup/__picture-container/popup__picture-container.css);
 @import url(../blocks/popup/__figure/popup__figure.css);
 @import url(../blocks/popup/__picture/popup__picture.css);
@@ -59,4 +59,4 @@
 @import url(../blocks/form/__input/_text/form__input_text_descr.css);
 @import url(../blocks/form/__input/_text/form__input_text_name.css);
 @import url(../blocks/form/__save/form__save.css);
-@import url(../blocks/form/__input/_link/form__input_link.css);
+@import url(../blocks/form/__input/_link/form__input_text_link.css);
