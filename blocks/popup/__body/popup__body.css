@@ -1,15 +1,16 @@
 .popup__body {
-		max-width: 430px;
-		width: 100%;
-		position: relative;
-		background-color: white;
-		color: black;
-		border-radius: 10px;
-		padding: 30px;
+	max-width: 430px;
+	width: 100%;
+	position: relative;
+	background-color: white;
+	color: black;
+	border-radius: 10px;
+	padding: 30px;
+	box-sizing: border-box;
 }
-	
-	@media (max-width: 768px) {
-		.popup__body {
-			padding: 20px;
-		}
+
+@media (max-width: 768px) {
+	.popup__body {
+		padding: 22px;
 	}
+}

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,8 +11,12 @@
 		<div class="page">
 			<header class="header">
 				<div class="container">
-					<img class="header__logo" src="./images/logo-header.svg" alt="Логотип сайта
-						Место." />
+					<img
+						class="header__logo"
+						src="./images/logo-header.svg"
+						alt="Логотип сайта
+						Место."
+					/>
 				</div>
 			</header>
 			<main class="content">
@@ -21,21 +24,39 @@
 					<div class="container">
 						<div class="profile__body">
 							<div class="profile__avatar">
-								<img class="profile__avatar-image" src="./images/image.png" alt="Аватар
-									пользователя" />
+								<img
+									class="profile__avatar-image"
+									src="./images/image.png"
+									alt="Аватар
+									пользователя"
+								/>
 								<button class="profile__avatar-btn"></button>
 							</div>
 							<div class="profile__info">
-								<h1 class="profile__title" placeholder="Имя">Your profile</h1>
-								<button type="button" class="profile__edit-button"></button>
-								<p class="profile__description" placeholder="Профессия">Game ID</p>
+								<h1 class="profile__title" placeholder="Имя">
+									Your profile
+								</h1>
+								<button
+									type="button"
+									class="profile__edit-button"
+								></button>
+								<p
+									class="profile__description"
+									placeholder="Профессия"
+								>
+									Game ID
+								</p>
 							</div>
 							<button type="button" class="profile__add-button">
-								<img src="./images/profile-add-btn.svg" alt="Кнопка профиля" />
+								<img
+									src="./images/profile-add-btn.svg"
+									alt="Кнопка профиля"
+								/>
 							</button>
 						</div>
 					</div>
-				</section>git 
+				</section>
+				git
 				<section>
 					<ul class="elements">
 						<template id="cardNode">
@@ -45,7 +66,9 @@
 								<div class="element__bottom-block">
 									<h3 class="element__title">Байкал</h3>
 									<div class="element__likes">
-										<button class="element__like-btn"></button>
+										<button
+											class="element__like-btn"
+										></button>
 									</div>
 								</div>
 							</li>
@@ -62,11 +85,17 @@
 				<div class="popup__body">
 					<form class="form" name="form">
 						<h2 class="form__title">Редактировать профиль</h2>
-						<input class="form__input form__input_text_name" type="text" name="name"
-							/>
-						<input class="form__input form__input_text_descr" type="text"
-							name="description" />
-						<button class="form__save" type="button">
+						<input
+							class="form__input form__input_text_name"
+							type="text"
+							name="name"
+						/>
+						<input
+							class="form__input form__input_text_descr"
+							type="text"
+							name="description"
+						/>
+						<button class="form__save" type="submit">
 							Сохранить
 						</button>
 					</form>
@@ -79,32 +108,50 @@
 				<div class="popup__body">
 					<form class="form" name="form">
 						<h2 class="form__title">Новое место</h2>
-						<input class="form__input form__input_text_name" type="text" name="name"
-							placeholder="Название" />
-						<input class="form__input form__input_link" type="text" name="link"
-							placeholder="Ссылка на картинку" />
-						<button class="form__save" type="button">
+						<input
+							class="form__input form__input_text_name"
+							type="text"
+							name="name"
+							placeholder="Название"
+						/>
+						<input
+							class="form__input form__input_link"
+							type="text"
+							name="link"
+							placeholder="Ссылка на картинку"
+						/>
+						<button class="form__save" type="submit">
 							Создать
 						</button>
 					</form>
-					<button class="popup__close popup__close-place" type="button">
+					<button
+						class="popup__close popup__close-place"
+						type="button"
+					>
 						<img src="./images/close-icn.svg" alt="Закрыть" />
 					</button>
 				</div>
 			</div>
-			<section class="popup popup_open-picture">
+			<div class="popup popup_open-picture">
 				<div class="popup__picture-container">
 					<figure class="popup__figure">
-						<img  class="popup__picture" alt="Открыть попап" />
+						<img
+							class="popup__picture"
+							alt="Открыть попап"
+							src="/"
+						/>
 						<figcaption class="popup__description">
 							карачевск
 						</figcaption>
 					</figure>
-					<button type="button" class="popup__close popup__close_open-picture">
+					<button
+						type="button"
+						class="popup__close popup__close_open-picture"
+					>
 						<img src="./images/close-icn.svg" alt="Закрыть" />
 					</button>
 				</div>
-			</section>
+			</div>
 		</div>
 		<script defer src="./script/cards.js"></script>
 		<script defer src="./script/index.js"></script>
