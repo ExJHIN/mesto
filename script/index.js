@@ -1,8 +1,8 @@
 const editProfilePopupNode = document.querySelector('.popup_edit_profile');
-const newCardPopupNode = document.querySelector('.popup__new_place');
+const newCardPopupNode = document.querySelector('.popup_new_place');
 const cardsContainerNode = document.querySelector('.elements');
 
-const picturePopup = document.querySelector('.popup__open_popup');
+const picturePopup = document.querySelector('.popup_open_popup');
 const picturePopupImage = picturePopup.querySelector('.popup__picture');
 const picturePopupDescription = picturePopup.querySelector(
 	'.popup__description'
