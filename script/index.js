@@ -1,4 +1,4 @@
-const editProfilePopupNode = document.querySelector('.popup_edit_profile');
+const profileEditPopupNode = document.querySelector('.popup_edit_profile');
 const newCardPopupNode = document.querySelector('.popup_new_place');
 const cardsContainerNode = document.querySelector('.elements');
 
@@ -16,29 +16,29 @@ picturePopupCloseButton.addEventListener('click', () =>
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 const profileEditingButton = document.querySelector('.profile__edit-button');
-const profileForm = editProfilePopupNode.querySelector('.form');
-const profileNameInput = editProfilePopupNode.querySelector(
+const profileForm = profileEditPopupNode.querySelector('.form');
+const profileNameInput = profileEditPopupNode.querySelector(
 	'.form__input_text_name'
 );
-const profileDescriptionInput = editProfilePopupNode.querySelector(
+const profileDescriptionInput = profileEditPopupNode.querySelector(
 	'.form__input_text_descr'
 );
-const profileCloseButton = editProfilePopupNode.querySelector('.popup__close');
+const profileCloseButton = profileEditPopupNode.querySelector('.popup__close');
 
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardCloseButton = newCardPopupNode.querySelector('.popup__close');
 const newCardForm = newCardPopupNode.querySelector('.form');
-const addingCardnameInput = newCardPopupNode.querySelector(
+const CardnameAddingInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
-const addingCardlinkInput = newCardPopupNode.querySelector('.form__input_text_link');
+const CardlinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
 
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
 	profileNameInput.value = profileName.textContent.trim();
 	profileDescriptionInput.value = profileDescription.textContent.trim();
 
-	openPopup(editProfilePopupNode);
+	openPopup(profileEditPopupNode);
 });
 profileForm.addEventListener('submit', (event) => {
 	event.preventDefault();
@@ -46,24 +46,22 @@ profileForm.addEventListener('submit', (event) => {
 	profileName.textContent = profileNameInput.value;
 	profileDescription.textContent = profileDescriptionInput.value;
 
-	closePopup(editProfilePopupNode);
+	closePopup(profileEditPopupNode);
 });
 profileCloseButton.addEventListener('click', () =>
-	closePopup(editProfilePopupNode)
+	closePopup(profileEditPopupNode)
 );
 // Слушатель на открытие popup по кнопке добавления карточки
 newCardButton.addEventListener('click', () => openPopup(newCardPopupNode));
 newCardCloseButton.addEventListener('click', () => {
 	closePopup(newCardPopupNode);
-
-	resetNewCardInputs();
 });
 newCardForm.addEventListener('submit', (event) => {
 	event.preventDefault();
 
 	const card = {
-		name: addingCardnameInput.value,
-		link: addingCardlinkInput.value,
+		name: CardnameAddingInput.value,
+		link: CardlinkAddingInput.value,
 	};
 	renderCard(card, cardsContainerNode);
 	closePopup(newCardPopupNode);
@@ -71,8 +69,8 @@ newCardForm.addEventListener('submit', (event) => {
 });
 
 function resetNewCardInputs() {
-	addingCardnameInput.value = '';
-	addingCardlinkInput.value = '';
+	CardnameAddingInput.value = '';
+	CardlinkAddingInput.value = '';
 }
 
 //Функция отрытия/закрытия popup
