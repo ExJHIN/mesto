@@ -26,7 +26,7 @@
 							<div class="profile__avatar">
 								<img
 									class="profile__avatar-image"
-									src="./images/image.png"
+									src="./images/video-game-devushka-bandana-akali-dym-kepka-oruzhie-league-o.jpg"
 									alt="Аватар
 									пользователя"
 									/>
@@ -81,21 +81,29 @@
 			</footer>
 			<div class="popup popup_edit_profile">
 				<div class="popup__body">
-					<form class="form" name="formNameOne">
+					<form class="form" name="formNameOne" novalidate>
 						<h2 class="form__title">Редактировать профиль</h2>
 						<input
 							class="form__input form__input_text_name"
 							type="text"
 							name="name"
 							placeholder="Имя"
+							minlength="2"
+							maxlength="40"
+							required
 							/>
+							<span class="form__input-error popup__error form__input_type_error" ></span>
 						<input
 							class="form__input form__input_text_descr"
 							type="text"
 							name="description"
 							placeholder="Описание"
+							minlength="2"
+							maxlength="200"
+							required
 							/>
-						<button class="form__save" type="submit">
+							<span class="form__input-error popup__error form__input_type_error" ></span>
+						<button class="form__save popup__button_invalid" type="submit">
 							Сохранить
 						</button>
 					</form>
@@ -106,7 +114,7 @@
 			</div>
 			<div class="popup popup_new_place">
 				<div class="popup__body">
-					<form class="form" name="formNameTwo">
+					<form class="form" name="formNameTwo" novalidate>
 						<h2 class="form__title">Новое место</h2>
 						<input
 							class="form__input form__input_text_name"
@@ -114,15 +122,23 @@
 							name="name"
 							title="Название"
 							placeholder="Название"
+							novalidate
+							minlength="2"
+							maxlength="30"
+							required
 							/>
+						<span class="form__input-error popup__error form__input_type_error" ></span>
 						<input
 							class="form__input form__input_text_link"
-							type="text"
-							name="link"
+							type="url"
+							name="url"
 							title="Ссылка на картинку"
 							placeholder="Ссылка"
+							novalidate
+							required
 							/>
-						<button class="form__save" type="submit">
+							<span class="form__input-error popup__error form__input_type_error .form__input-error_active" ></span>
+						<button class="form__save popup__button_invalid" type="submit">
 							Создать
 						</button>
 					</form>

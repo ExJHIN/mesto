@@ -60,3 +60,7 @@
 @import url(../blocks/form/__input/_text/form__input_text_name.css);
 @import url(../blocks/form/__save/form__save.css);
 @import url(../blocks/form/__input/_link/form__input_text_link.css);
+@import url(../blocks/popup/__error/popup__error.css);
+@import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+@import url(../blocks/popup/__button/_valid/popup__button_valid.css);
+@import url(../blocks/popup/__button/_invalid/popup__button_invalid.css);

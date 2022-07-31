@@ -1,0 +1,6 @@
+.popup__button_valid {
+    transition: opacity .1s linear;
+    background-color: black;
+	color: white;
+    
+}

@@ -1,0 +1,10 @@
+.popup__button_invalid {
+    background-color: #fff;
+    border: 1px solid #000;
+    color: #000;
+    cursor: auto;
+    opacity: .2;
+    pointer-events: none;
+    position: relative;
+border-radius: 2px;
+}

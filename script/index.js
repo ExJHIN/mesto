@@ -1,7 +1,7 @@
 const profileEditPopupNode = document.querySelector('.popup_edit_profile');
 const newCardPopupNode = document.querySelector('.popup_new_place');
 const cardsContainerNode = document.querySelector('.elements');
-
+let KEYCODE_ESC = 27;
 const picturePopup = document.querySelector('.popup_open_popup');
 const picturePopupImage = picturePopup.querySelector('.popup__picture');
 const picturePopupDescription = picturePopup.querySelector(
@@ -33,6 +33,9 @@ const cardNameAddingInput = newCardPopupNode.querySelector(
 );
 const cardLinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
 
+
+
+
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
 	profileNameInput.value = profileName.textContent.trim();
@@ -40,14 +43,7 @@ profileEditingButton.addEventListener('click', () => {
 
 	openPopup(profileEditPopupNode);
 });
-profileForm.addEventListener('submit', (event) => {
-	event.preventDefault();
 
-	profileName.textContent = profileNameInput.value;
-	profileDescription.textContent = profileDescriptionInput.value;
-
-	closePopup(profileEditPopupNode);
-});
 profileCloseButton.addEventListener('click', () =>
 	closePopup(profileEditPopupNode)
 );
@@ -56,30 +52,54 @@ newCardButton.addEventListener('click', () => openPopup(newCardPopupNode));
 newCardCloseButton.addEventListener('click', () => {
 	closePopup(newCardPopupNode);
 });
-newCardForm.addEventListener('submit', (event) => {
-	event.preventDefault();
 
-	const card = {
-		name: cardNameAddingInput.value,
-		link: cardLinkAddingInput.value,
-	};
-	renderCard(card, cardsContainerNode);
-	closePopup(newCardPopupNode);
-	resetNewCardInputs();
+
+
+
+profileForm.addEventListener('submit', (event) => {
+	event.preventDefault();
+	profileName.textContent = profileNameInput.value;
+	profileDescription.textContent = profileDescriptionInput.value;
+	closePopup(profileEditPopupNode);
 });
+
+
+
 
 function resetNewCardInputs() {
 	cardNameAddingInput.value = '';
 	cardLinkAddingInput.value = '';
 }
 
+
+
+
 //Функция отрытия/закрытия popup
-function closePopup(popup) {
-	popup.classList.remove('popup_opened');
+
+function closePopupEsc(evt) {
+	if (evt.key === 'Escape') {
+		const popup = document.querySelector('.popup_opened');
+		closePopup(popup);
+	}
+}
+
+function closePopupOverlay(evt) {
+	const popup = document.querySelector('.popup_opened');
+	if (evt.target === popup) {
+		closePopup(popup);
+	}
 }
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
+	window.addEventListener('keydown', closePopupEsc);
+	popup.addEventListener('click', closePopupOverlay);
+}
+
+function closePopup(popup) {
+	popup.classList.remove('popup_opened');
+	window.removeEventListener('keydown', closePopupEsc);
+	popup.removeEventListener('click', closePopupOverlay);
 }
 
 // Генерация карточек из массива
@@ -129,6 +149,117 @@ function renderCard(card, place) {
 
 // Вызов рендера карточек
 renderInitialCards(cardsContainerNode);
+
+	newCardForm.addEventListener('submit', (event) => {
+		event.preventDefault();
+		const card = {
+			name: cardNameAddingInput.value,
+			link: cardLinkAddingInput.value,
+		};
+		renderCard(card, cardsContainerNode);
+	
+		resetNewCardInputs();
+		closePopup(newCardPopupNode);
+	
+	
+	});
+
+
+/////////////////////////////// validate
+
+const formOne = {
+	form: '.form[name="formNameTwo"]',
+	button: '.form__save',
+	buttonValid: 'popup__button_valid',
+	buttonInvalid:'popup__button_invalid'
+}
+const formTwo = {
+	form: '.form[name="formNameOne"]',
+	button: '.form__save',
+	buttonValid: 'popup__button_valid',
+	buttonInvalid:'popup__button_invalid'
+}
+function enableValidation(config) {
+	//Нашли форму в документе
+	const form = document.querySelector(config.form);
+	form.addEventListener('submit', handleFormSubmit);
+	form.addEventListener('input',(event)=> handleFormInput(event,config));
+}
+function handleFormInput(event,config) {
+	const input = event.target;
+	const form = event.currentTarget;
+	showFieldError(input);
+	setSubmitButtonState(form,config);
+}
+
+const showFieldError = (input) => {
+	const error = input.nextElementSibling;
+	error.textContent= input.validationMessage;
+}
+
+function setSubmitButtonState (form, config){
+	const button= form.querySelector(config.button);
+	const isValid = form.checkValidity();
+	if (isValid){
+		button.removeAttribute('disabled');
+		button.classList.remove(config.buttonInvalid);
+		button.classList.add(config.buttonValid);
+	} else {
+		button.setAttribute('disabled', true);
+		button.classList.remove(config.buttonValid);
+		button.classList.add(config.buttonInvalid);
+	}
+}
+
+
+function handleFormSubmit(event) {
+	event.preventDefault();
+	const form = event.currentTarget;
+	const isValid = form.checkValidity();
+	const formElement = document.querySelector('[name="formNameTwo"]');
+	const formInput = formElement.querySelector('.form__input');
+	if (isValid) {
+		// showInputError теперь получает параметром форму, в которой
+		// находится проверяемое поле, и само это поле
+		showFieldError(formInput, formInput.validationMessage);
+		addNewCart();
+		form.reset();
+		//showInputError(form, inputElement, inputElement.validationMessage);
+	} else {
+		// hideInputError теперь получает параметром форму, в которой
+		// находится проверяемое поле, и само это поле
+		//hideInputError(formElement, inputElement);
+		showFieldError(input);
+	}
+}
+enableValidation(formOne);
+enableValidation(formTwo);
+
+
+
+
+/////////////////////////////// validate
+
+const hideInputError = (formElement, inputElement) => {
+	// Находим элемент ошибки
+	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+	// Остальной код такой же
+	inputElement.classList.remove('popup__error_visible');
+	errorElement.classList.remove('.popup__error_visible');
+	errorElement.textContent = '';
+};
+
+
+
+/////////////////////////////// validate
+
+
+
+
+
+
+
+
 // LIKE
 function addLikeListener(card) {
 	const likeButton = card.querySelector('.element__like-btn');
