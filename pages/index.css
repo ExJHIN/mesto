@@ -62,5 +62,5 @@
 @import url(../blocks/form/__input/_link/form__input_text_link.css);
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
-@import url(../blocks/popup/__button/_valid/popup__button_valid.css);
-@import url(../blocks/popup/__button/_invalid/popup__button_invalid.css);
+@import url(../blocks/popup/__button/popup__button-invalid.css);
+@import url(../blocks/popup/__button/popup__button-valid.css);

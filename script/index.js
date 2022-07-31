@@ -170,14 +170,14 @@ renderInitialCards(cardsContainerNode);
 const formOne = {
 	form: '.form[name="formNameTwo"]',
 	button: '.form__save',
-	buttonValid: 'popup__button_valid',
-	buttonInvalid:'popup__button_invalid'
+	buttonValid: 'popup__button-valid',
+	buttonInvalid:'popup__button-invalid'
 }
 const formTwo = {
 	form: '.form[name="formNameOne"]',
 	button: '.form__save',
-	buttonValid: 'popup__button_valid',
-	buttonInvalid:'popup__button_invalid'
+	buttonValid: 'popup__button-valid',
+	buttonInvalid:'popup__button-invalid'
 }
 function enableValidation(config) {
 	//Нашли форму в документе
