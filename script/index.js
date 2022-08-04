@@ -16,7 +16,7 @@ picturePopupCloseButton.addEventListener('click', () =>
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 const profileEditingButton = document.querySelector('.profile__edit-button');
-const profileForm = profileEditPopupNode.querySelector('.form');
+const profileForm = profileEditPopupNode.querySelector('.form__one');
 const profileNameInput = profileEditPopupNode.querySelector(
 	'.form__input_text_name'
 );
@@ -27,7 +27,7 @@ const profileCloseButton = profileEditPopupNode.querySelector('.popup__close');
 
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardCloseButton = newCardPopupNode.querySelector('.popup__close');
-const newCardForm = newCardPopupNode.querySelector('.form');
+const newCardForm = newCardPopupNode.querySelector('.form__two');
 const cardNameAddingInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
@@ -56,12 +56,6 @@ newCardCloseButton.addEventListener('click', () => {
 
 
 
-profileForm.addEventListener('submit', (event) => {
-	event.preventDefault();
-	profileName.textContent = profileNameInput.value;
-	profileDescription.textContent = profileDescriptionInput.value;
-	closePopup(profileEditPopupNode);
-});
 
 
 
@@ -150,112 +144,8 @@ function renderCard(card, place) {
 // Вызов рендера карточек
 renderInitialCards(cardsContainerNode);
 
-
-const showInputError = (formElement, inputElement, errorMessage) => {
-	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	inputElement.classList.add('form__input_type_error');
-	errorElement.textContent = errorMessage;
-	errorElement.classList.add('form__input-error_active');
-};
-const hideInputError = (formElement, inputElement) => {
-	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	inputElement.classList.remove('form__input_type_error');
-	errorElement.classList.remove('form__input-error_active');
-	errorElement.textContent = '';
-};
-const checkInputValidity = (formElement, inputElement) => {
-	if (!inputElement.validity.valid) {
-		showInputError(formElement, inputElement, inputElement.validationMessage);
-	} else {
-		hideInputError(formElement, inputElement);
-
-	}
-};
-
-
-
-
-
-
-
-
-
-const toggleButtonState = (formElement, buttonElement) => {
-	formElement.addEventListener('input', (event) => { 
-		const form = event.currentTarget;
-		const isValid = form.checkValidity();
-	
-
-		if (isValid) {
-			buttonElement.removeAttribute('disabled');
-			buttonElement.classList.remove('popup__button-invalid');
-			buttonElement.classList.add('popup__button-valid');
-			
-			
-		} else {
-			buttonElement.setAttribute('disabled', true);
-			buttonElement.classList.remove('popup__button-valid');
-			buttonElement.classList.add('popup__button-invalid');
-		}
-
-
-
-
-
-		}
-	  )}
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const setEventListeners = (formElement) => {
-	const inputList = Array.from(formElement.querySelectorAll(`.form__input`));
-	const buttonElement = formElement.querySelector('.form__save');
-	toggleButtonState(formElement, buttonElement);
-	formElement.addEventListener('submit', function (evt) {
-		evt.preventDefault();
-		toggleButtonState(formElement, buttonElement);
-	});
-	formElement.addEventListener('input', function (evt) {
-		const inputElement = evt.target;
-		checkInputValidity(formElement, inputElement);
-		toggleButtonState(formElement, buttonElement);
-	});
-
-}
-
-
-
-
-
-
-const enableValidation = () => {
-	const formList = Array.from(document.querySelectorAll('.form'));
-	formList.forEach((formElement) => {
-		setEventListeners(formElement);
-	});
-};
-
-
-
-
 newCardForm.addEventListener('submit', (event) => {
-	const formElement = document.querySelector('.form');
-	const input = Array.from(formElement.querySelectorAll(`.form__input`));
-	const buttonElement = formElement.querySelector('.form__save');
+	const buttonElement = newCardForm.querySelector(`.form__save`);
 	event.preventDefault();
 	const card = {
 		name: cardNameAddingInput.value,
@@ -263,12 +153,23 @@ newCardForm.addEventListener('submit', (event) => {
 	};
 	renderCard(card, cardsContainerNode);
 	resetNewCardInputs();
-	toggleButtonState(formElement, buttonElement);
-	newCardForm.reset();
-	
+
 	closePopup(newCardPopupNode);
+	resetButton(buttonElement);
+
 
 });
+
+
+profileForm.addEventListener('submit', (event) => {
+	const buttonElement = newCardForm.querySelector(`.form__one`);
+	event.preventDefault();
+	profileName.textContent = profileNameInput.value;
+	profileDescription.textContent = profileDescriptionInput.value;
+	closePopup(profileEditPopupNode);
+	resetButton(buttonElement);
+});
+
 enableValidation();
 
 // LIKE
