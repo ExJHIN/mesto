@@ -197,10 +197,7 @@ const toggleButtonState = (inputList, buttonElement) => {
 	}
 };
 
-const resetButtonState = () => {
-	const button = document.querySelector('.form__save');
-	button.classList.add('popup__button-invalid');
-}
+
 
 
 
@@ -220,7 +217,6 @@ const setEventListeners = (formElement) => {
 	toggleButtonState(inputList, buttonElement);
 	formElement.addEventListener('submit', function (evt) {
 		evt.preventDefault();
-		resetButtonState();
 	});
 	formElement.addEventListener('input', function (evt) {
 		const inputElement = evt.target;
@@ -242,11 +238,10 @@ const enableValidation = () => {
 	});
 };
 
-enableValidation();
+
 
 
 newCardForm.addEventListener('submit', (event) => {
-	
 	event.preventDefault();
 	const card = {
 		name: cardNameAddingInput.value,
@@ -254,12 +249,11 @@ newCardForm.addEventListener('submit', (event) => {
 	};
 	renderCard(card, cardsContainerNode);
 	resetNewCardInputs();
+	toggleButtonState(inputList, buttonElement);
 	closePopup(newCardPopupNode);
-	
-
 
 });
-
+enableValidation();
 
 // LIKE
 function addLikeListener(card) {
