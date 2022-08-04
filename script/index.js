@@ -173,29 +173,39 @@ const checkInputValidity = (formElement, inputElement) => {
 };
 
 
-const hasInvalidInput = (inputList) => {
-	return inputList.some((inputElement) => {
-		return !inputElement.validity.valid;
-	});
-}
 
 
 
 
 
 
-const toggleButtonState = (inputList, buttonElement) => {
-	if (hasInvalidInput(inputList)) {
-		buttonElement.setAttribute('disabled', true);
-		buttonElement.classList.remove('popup__button-valid');
-		buttonElement.classList.add('popup__button-invalid');
 
-	} else {
-		buttonElement.removeAttribute('disabled');
-		buttonElement.classList.remove('popup__button-invalid');
-		buttonElement.classList.add('popup__button-valid');
-	}
-};
+const toggleButtonState = (formElement, buttonElement) => {
+	formElement.addEventListener('input', (event) => { 
+		const form = event.currentTarget;
+		const isValid = form.checkValidity();
+	
+
+		if (isValid) {
+			buttonElement.removeAttribute('disabled');
+			buttonElement.classList.remove('popup__button-invalid');
+			buttonElement.classList.add('popup__button-valid');
+			
+			
+		} else {
+			buttonElement.setAttribute('disabled', true);
+			buttonElement.classList.remove('popup__button-valid');
+			buttonElement.classList.add('popup__button-invalid');
+		}
+
+
+
+
+
+		}
+	  )}
+
+	
 
 
 
@@ -214,14 +224,15 @@ const toggleButtonState = (inputList, buttonElement) => {
 const setEventListeners = (formElement) => {
 	const inputList = Array.from(formElement.querySelectorAll(`.form__input`));
 	const buttonElement = formElement.querySelector('.form__save');
-	toggleButtonState(inputList, buttonElement);
+	toggleButtonState(formElement, buttonElement);
 	formElement.addEventListener('submit', function (evt) {
 		evt.preventDefault();
+		toggleButtonState(formElement, buttonElement);
 	});
 	formElement.addEventListener('input', function (evt) {
 		const inputElement = evt.target;
 		checkInputValidity(formElement, inputElement);
-		toggleButtonState(inputList, buttonElement);
+		toggleButtonState(formElement, buttonElement);
 	});
 
 }
@@ -242,6 +253,9 @@ const enableValidation = () => {
 
 
 newCardForm.addEventListener('submit', (event) => {
+	const formElement = document.querySelector('.form');
+	const input = Array.from(formElement.querySelectorAll(`.form__input`));
+	const buttonElement = formElement.querySelector('.form__save');
 	event.preventDefault();
 	const card = {
 		name: cardNameAddingInput.value,
@@ -249,7 +263,9 @@ newCardForm.addEventListener('submit', (event) => {
 	};
 	renderCard(card, cardsContainerNode);
 	resetNewCardInputs();
-	toggleButtonState(inputList, buttonElement);
+	toggleButtonState(formElement, buttonElement);
+	newCardForm.reset();
+	
 	closePopup(newCardPopupNode);
 
 });
