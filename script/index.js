@@ -16,7 +16,7 @@ picturePopupCloseButton.addEventListener('click', () =>
 const profileName = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
 const profileEditingButton = document.querySelector('.profile__edit-button');
-const profileForm = profileEditPopupNode.querySelector('.form__one');
+const profileForm = profileEditPopupNode.querySelector('.form_one');
 const profileNameInput = profileEditPopupNode.querySelector(
 	'.form__input_text_name'
 );
@@ -27,7 +27,7 @@ const profileCloseButton = profileEditPopupNode.querySelector('.popup__close');
 
 const newCardButton = document.querySelector('.profile__add-button');
 const newCardCloseButton = newCardPopupNode.querySelector('.popup__close');
-const newCardForm = newCardPopupNode.querySelector('.form__two');
+const newCardForm = newCardPopupNode.querySelector('.form_two');
 const cardNameAddingInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
