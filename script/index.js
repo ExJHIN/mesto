@@ -150,114 +150,115 @@ function renderCard(card, place) {
 // Вызов рендера карточек
 renderInitialCards(cardsContainerNode);
 
-	newCardForm.addEventListener('submit', (event) => {
-		event.preventDefault();
-		const card = {
-			name: cardNameAddingInput.value,
-			link: cardLinkAddingInput.value,
-		};
-		renderCard(card, cardsContainerNode);
-	
-		resetNewCardInputs();
-		closePopup(newCardPopupNode);
-	
-	
-	});
 
-
-/////////////////////////////// validate
-
-const formOne = {
-	form: '.form[name="formNameTwo"]',
-	button: '.form__save',
-	buttonValid: 'popup__button-valid',
-	buttonInvalid:'popup__button-invalid'
-}
-const formTwo = {
-	form: '.form[name="formNameOne"]',
-	button: '.form__save',
-	buttonValid: 'popup__button-valid',
-	buttonInvalid:'popup__button-invalid'
-}
-function enableValidation(config) {
-	//Нашли форму в документе
-	const form = document.querySelector(config.form);
-	form.addEventListener('submit', handleFormSubmit);
-	form.addEventListener('input',(event)=> handleFormInput(event,config));
-}
-function handleFormInput(event,config) {
-	const input = event.target;
-	const form = event.currentTarget;
-	showFieldError(input);
-	setSubmitButtonState(form,config);
-}
-
-const showFieldError = (input) => {
-	const error = input.nextElementSibling;
-	error.textContent= input.validationMessage;
-}
-
-function setSubmitButtonState (form, config){
-	const button= form.querySelector(config.button);
-	const isValid = form.checkValidity();
-	if (isValid){
-		button.removeAttribute('disabled');
-		button.classList.remove(config.buttonInvalid);
-		button.classList.add(config.buttonValid);
-	} else {
-		button.setAttribute('disabled', true);
-		button.classList.remove(config.buttonValid);
-		button.classList.add(config.buttonInvalid);
-	}
-}
-
-
-function handleFormSubmit(event) {
-	event.preventDefault();
-	const form = event.currentTarget;
-	const isValid = form.checkValidity();
-	const formElement = document.querySelector('[name="formNameTwo"]');
-	const formInput = formElement.querySelector('.form__input');
-	if (isValid) {
-		// showInputError теперь получает параметром форму, в которой
-		// находится проверяемое поле, и само это поле
-		showFieldError(formInput, formInput.validationMessage);
-		addNewCart();
-		form.reset();
-		//showInputError(form, inputElement, inputElement.validationMessage);
-	} else {
-		// hideInputError теперь получает параметром форму, в которой
-		// находится проверяемое поле, и само это поле
-		//hideInputError(formElement, inputElement);
-		showFieldError(input);
-	}
-}
-enableValidation(formOne);
-enableValidation(formTwo);
-
-
-
-
-/////////////////////////////// validate
-
-const hideInputError = (formElement, inputElement) => {
-	// Находим элемент ошибки
+const showInputError = (formElement, inputElement, errorMessage) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	// Остальной код такой же
-	inputElement.classList.remove('popup__error_visible');
-	errorElement.classList.remove('.popup__error_visible');
+	inputElement.classList.add('form__input_type_error');
+	errorElement.textContent = errorMessage;
+	errorElement.classList.add('form__input-error_active');
+};
+const hideInputError = (formElement, inputElement) => {
+	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+	inputElement.classList.remove('form__input_type_error');
+	errorElement.classList.remove('form__input-error_active');
 	errorElement.textContent = '';
+};
+const checkInputValidity = (formElement, inputElement) => {
+	if (!inputElement.validity.valid) {
+		showInputError(formElement, inputElement, inputElement.validationMessage);
+	} else {
+		hideInputError(formElement, inputElement);
+
+	}
 };
 
 
+const hasInvalidInput = (inputList) => {
+	return inputList.some((inputElement) => {
+		return !inputElement.validity.valid;
+	});
+}
 
-/////////////////////////////// validate
+
+
+
+
+
+const toggleButtonState = (inputList, buttonElement) => {
+	if (hasInvalidInput(inputList)) {
+		buttonElement.setAttribute('disabled', true);
+		buttonElement.classList.remove('popup__button-valid');
+		buttonElement.classList.add('popup__button-invalid');
+
+	} else {
+		buttonElement.removeAttribute('disabled');
+		buttonElement.classList.remove('popup__button-invalid');
+		buttonElement.classList.add('popup__button-valid');
+	}
+};
+
+const resetButtonState = () => {
+	const button = document.querySelector('.form__save');
+	button.classList.add('popup__button-invalid');
+}
 
 
 
 
 
 
+
+
+
+
+
+
+
+const setEventListeners = (formElement) => {
+	const inputList = Array.from(formElement.querySelectorAll(`.form__input`));
+	const buttonElement = formElement.querySelector('.form__save');
+	toggleButtonState(inputList, buttonElement);
+	formElement.addEventListener('submit', function (evt) {
+		evt.preventDefault();
+		resetButtonState();
+	});
+	formElement.addEventListener('input', function (evt) {
+		const inputElement = evt.target;
+		checkInputValidity(formElement, inputElement);
+		toggleButtonState(inputList, buttonElement);
+	});
+
+}
+
+
+
+
+
+
+const enableValidation = () => {
+	const formList = Array.from(document.querySelectorAll('.form'));
+	formList.forEach((formElement) => {
+		setEventListeners(formElement);
+	});
+};
+
+enableValidation();
+
+
+newCardForm.addEventListener('submit', (event) => {
+	
+	event.preventDefault();
+	const card = {
+		name: cardNameAddingInput.value,
+		link: cardLinkAddingInput.value,
+	};
+	renderCard(card, cardsContainerNode);
+	resetNewCardInputs();
+	closePopup(newCardPopupNode);
+	
+
+
+});
 
 
 // LIKE
