@@ -7,7 +7,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 };
 const hideInputError = (formElement, inputElement) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	inputElement.classList.remove('form__input_type_error');
 	errorElement.classList.remove('form__input-error_active');
 	errorElement.textContent = '';
 };
@@ -25,11 +24,7 @@ const checkInputValidity = (formElement, inputElement) => {
 
 
 
-const resetButton = (buttonElement) => {
-	buttonElement.setAttribute('disabled', true);
-	buttonElement.classList.remove('popup__button-valid');
-	buttonElement.classList.add('popup__button-invalid');
-}
+
 
 
 

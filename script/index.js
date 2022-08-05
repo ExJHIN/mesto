@@ -1,7 +1,7 @@
 const profileEditPopupNode = document.querySelector('.popup_edit_profile');
 const newCardPopupNode = document.querySelector('.popup_new_place');
 const cardsContainerNode = document.querySelector('.elements');
-let KEYCODE_ESC = 27;
+const KEYCODE_ESC = 27;
 const picturePopup = document.querySelector('.popup_open_popup');
 const picturePopupImage = picturePopup.querySelector('.popup__picture');
 const picturePopupDescription = picturePopup.querySelector(
@@ -31,11 +31,12 @@ const newCardForm = newCardPopupNode.querySelector('.form_two');
 const cardNameAddingInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
+const element = document.querySelector('.element__img');
 const cardLinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
+const buttonElement = newCardForm.querySelector(`.form__save`);
 
 
-
-
+const template = document.querySelector('#cardNode');
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
 	profileNameInput.value = profileName.textContent.trim();
@@ -65,7 +66,11 @@ function resetNewCardInputs() {
 	cardLinkAddingInput.value = '';
 }
 
-
+const resetButton = (buttonElement) => {
+	buttonElement.setAttribute('disabled', true);
+	buttonElement.classList.remove('popup__button-valid');
+	buttonElement.classList.add('popup__button-invalid');
+}
 
 
 //Функция отрытия/закрытия popup
@@ -105,14 +110,17 @@ function renderInitialCards(place) {
 
 //Получить Card
 function getCardNode({ name, link }) {
-	const card = document
-		.querySelector('#cardNode')
+	const card = template
 		.content.cloneNode(true)
 		.querySelector('.element');
 
 	const trashButton = card.querySelector('.element__trash-btn');
-	trashButton.addEventListener('click', () => {
-		card.parentNode.removeChild(card);
+	trashButton.addEventListener('click', (evt) => {
+		const item = trashButton.closest('.element')
+		item.remove();
+		
+
+		/* card.parentNode.removeChild(card); Работает */
 	});
 	const img = card.querySelector('.element__img');
 	img.setAttribute('src', link);
@@ -145,7 +153,7 @@ function renderCard(card, place) {
 renderInitialCards(cardsContainerNode);
 
 newCardForm.addEventListener('submit', (event) => {
-	const buttonElement = newCardForm.querySelector(`.form__save`);
+
 	event.preventDefault();
 	const card = {
 		name: cardNameAddingInput.value,
@@ -161,13 +169,11 @@ newCardForm.addEventListener('submit', (event) => {
 });
 
 
-profileForm.addEventListener('submit', (event) => {
-	const buttonElement = newCardForm.querySelector(`.form__one`);
+profileForm.addEventListener('submit', (event, profileForm) => {
 	event.preventDefault();
 	profileName.textContent = profileNameInput.value;
 	profileDescription.textContent = profileDescriptionInput.value;
 	closePopup(profileEditPopupNode);
-	resetButton(buttonElement);
 });
 
 enableValidation();
@@ -175,7 +181,7 @@ enableValidation();
 // LIKE
 function addLikeListener(card) {
 	const likeButton = card.querySelector('.element__like-btn');
-
+	console.log(likeButton);
 	likeButton.addEventListener('click', () => {
 		likeButton.classList.toggle('element__like-btn_active');
 	});
@@ -191,4 +197,5 @@ function onCardClick({ name, link, buttons }, evt) {
 
 	picturePopupImage.src = link;
 	picturePopupDescription.textContent = name;
+	picturePopupImage.alt = name;
 }
