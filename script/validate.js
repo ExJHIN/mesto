@@ -7,7 +7,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 // Зачтите пожалуйста :)
 const hideInputError = (formElement, inputElement) => {
 	const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-	errorElement.classList.remove('form__input-error_active');
 	errorElement.textContent = '';
 };
 const checkInputValidity = (formElement, inputElement) => {
