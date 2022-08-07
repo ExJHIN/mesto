@@ -176,12 +176,14 @@ profileForm.addEventListener('submit', (event, profileForm) => {
 	closePopup(profileEditPopupNode);
 });
 
-enableValidation();
+
+
+
+enableValidation(formVal);
 
 // LIKE
 function addLikeListener(card) {
 	const likeButton = card.querySelector('.element__like-btn');
-	console.log(likeButton);
 	likeButton.addEventListener('click', () => {
 		likeButton.classList.toggle('element__like-btn_active');
 	});
