@@ -44,16 +44,18 @@ export class FormValidator {
 
 	// метод который меняет состояние кнопки в зависимости от валидности
 	_toggleButtonState() {
-		if (this._hasInvalidInput()) {
-			this._buttonElement.setAttribute('disabled', true);
-			this._buttonElement.classList.remove(this._settings.buttonValid);
-			this._buttonElement.classList.add(this._settings.buttonInvalid);
-			
-
-		} else {
+		
+		if (!this._hasInvalidInput()) {
 			this._buttonElement.removeAttribute('disabled');
 			this._buttonElement.classList.remove(this._settings.buttonInvalid);
 			this._buttonElement.classList.add(this._settings.buttonValid);
+		
+
+
+		} else {
+			this._buttonElement.setAttribute('disabled', true);
+			this._buttonElement.classList.remove(this._settings.buttonValid);
+			this._buttonElement.classList.add(this._settings.buttonInvalid);
 		}
 	};
 
@@ -66,14 +68,12 @@ export class FormValidator {
 				this._toggleButtonState();
 			});
 		});
+		this._toggleButtonState();
 	};
 
+	
 	//метод, который включает валидацию формы
 	enableValidation() {
-		this._form.addEventListener('submit', (evt) => {
-			evt.preventDefault();
-		});
-
 		this._setEventListeners();
 	};
 
