@@ -1,24 +1,4 @@
-// interface CardSelectors {
-// 	template: string;
-// 	innerContent: string;
-// 	trashButton: string;
-// 	img: string;
-// 	title: string;
-// 	likeButton: string;
-// 	likeButtonActive: string;
-// }
 
-// interface Data {
-// 	name: string;
-// 	imgLink: string;
-// 	selectors: CardSelectors;
-// }
-
-// interface ClickHandlers {
-// 	cardClick: Function;
-// 	deleteClick: Function;
-// 	likeClick: Function;
-// }
 
 export class Card {
 	constructor(data, clickHandlers) {
