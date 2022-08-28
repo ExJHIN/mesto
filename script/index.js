@@ -31,24 +31,23 @@ const profileDescriptionInput = profileEditPopupNode.querySelector(
 const cardNameAddingInput = newCardPopupNode.querySelector(
 	'.form__input_text_name'
 );
-<<<<<<< HEAD
+
 
 const profileCloseButton = profileEditPopupNode.querySelector('.popup__close');
 const newCardCloseButton = newCardPopupNode.querySelector('.popup__close');
 
 
-const element = document.querySelector('.element__img');
-const cardLinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
+
 export const buttonElement = newCardForm.querySelector(`.form__save`);
 export const formList = Array.from(document.querySelectorAll('.form'));
 
-=======
+
 const element = document.querySelector('.element__img');
 const cardLinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
-const buttonElement = newCardForm.querySelector(`.form__save`);
 
 
->>>>>>> a7caeeaaa5dab90b4444a632cce5bb489445577a
+
+
 const template = document.querySelector('#cardNode');
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
@@ -144,44 +143,8 @@ function renderInitialCards(place) {
 	});
 }
 
-<<<<<<< HEAD
-=======
-//Получить Card
-function getCardNode({ name, link }) {
-	const card = template
-		.content.cloneNode(true)
-		.querySelector('.element');
-
-	const trashButton = card.querySelector('.element__trash-btn');
-	trashButton.addEventListener('click', (evt) => {
-		const item = trashButton.closest('.element')
-		item.remove();
-		
-
-		/* card.parentNode.removeChild(card); Работает */
-	});
-	const img = card.querySelector('.element__img');
-	img.setAttribute('src', link);
-	img.setAttribute('alt', name);
 
 
-	const title = card.querySelector('.element__title');
-	title.textContent = name;
-
-	const likeButton = card.querySelector('.element__like-btn');
-
-	card.addEventListener(
-		'click',
-		onCardClick.bind(picturePopup, {
-			name,
-			link,
-			buttons: [trashButton, likeButton],
-		})
-	);
-	addLikeListener(card);
-	return card;
-}
->>>>>>> a7caeeaaa5dab90b4444a632cce5bb489445577a
 //Функция рендера карточки
 function renderCard(cardNode, place) {
 	place.prepend(cardNode);
@@ -190,21 +153,6 @@ function renderCard(cardNode, place) {
 // Вызов рендера карточек
 renderInitialCards(cardsContainerNode);
 
-<<<<<<< HEAD
-=======
-newCardForm.addEventListener('submit', (event) => {
-
-	event.preventDefault();
-	const card = {
-		name: cardNameAddingInput.value,
-		link: cardLinkAddingInput.value,
-	};
-	renderCard(card, cardsContainerNode);
-	resetNewCardInputs();
-
-	closePopup(newCardPopupNode);
-	resetButton(buttonElement);
->>>>>>> a7caeeaaa5dab90b4444a632cce5bb489445577a
 
 
 function createCard({ name, imgLink }) {
@@ -224,7 +172,7 @@ function createCard({ name, imgLink }) {
 		cardClick: () => {
 			openPopup(picturePopup);
 
-<<<<<<< HEAD
+
 			picturePopupImage.src = cardLinkAddingInput.value;
 			picturePopupDescription.textContent = cardNameAddingInput.value;
 			picturePopupImage.alt = cardNameAddingInput.value;
@@ -235,26 +183,6 @@ function createCard({ name, imgLink }) {
 		likeClick: () => {
 			card.toggleLike();
 		}
-=======
-
-profileForm.addEventListener('submit', (event, profileForm) => {
-	event.preventDefault();
-	profileName.textContent = profileNameInput.value;
-	profileDescription.textContent = profileDescriptionInput.value;
-	closePopup(profileEditPopupNode);
-});
-
-
-
-
-enableValidation(formVal);
-
-// LIKE
-function addLikeListener(card) {
-	const likeButton = card.querySelector('.element__like-btn');
-	likeButton.addEventListener('click', () => {
-		likeButton.classList.toggle('element__like-btn_active');
->>>>>>> a7caeeaaa5dab90b4444a632cce5bb489445577a
 	});
 
 	return card;
@@ -262,7 +190,14 @@ function addLikeListener(card) {
 
 
 
-<<<<<<< HEAD
+
+
+
+
+
+
+
+
 // Вызов валидации
 const enableValidation = {
 	formSelector: '.form_one',
@@ -282,12 +217,8 @@ const enableValidationTwo = {
 	errorClass: 'popup__error_visible',
 	buttonValid: 'popup__button-valid',
 	buttonInvalid: 'popup__button-invalid',
-=======
-	picturePopupImage.src = link;
-	picturePopupDescription.textContent = name;
-	picturePopupImage.alt = name;
->>>>>>> a7caeeaaa5dab90b4444a632cce5bb489445577a
-}
+
+};
 
 const formOneValidator = new FormValidator(enableValidation, profileForm);
 const formTwoValidator = new FormValidator(enableValidationTwo, newCardForm);
