@@ -6,7 +6,7 @@ export class FormValidator {
 		this._buttonElement = this._form.querySelector(this._settings.submitButtonSelector);
 	}
 
-	// метод, который показывает класс с ошибкой
+	
 	_showInputError(inputElement, errorMessage) {
 		const { errorClass } = this._settings;
 		const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
@@ -15,7 +15,7 @@ export class FormValidator {
 		errorElement.classList.add(errorClass);
 	};
 
-	//метод, который удаляет класс с ошибкой
+	
 	_hideInputError(inputElement) {
 		const { errorClass } = this._settings;
 		const errorElement = this._form.querySelector(`.${inputElement.id}-error`);
@@ -24,7 +24,7 @@ export class FormValidator {
 		errorElement.textContent = '';
 	};
 
-	//метод, который проверяет валидность поля
+	
 	_isValid(inputElement) {
 		if (!inputElement.validity.valid) {
 			this._showInputError(inputElement, inputElement.validationMessage);
@@ -35,7 +35,7 @@ export class FormValidator {
 		this._hideInputError(inputElement);
 	};
 
-	//метод принимает массив полей и проходит по нему, оценивая валидность
+	
 	_hasInvalidInput() {
 		return this._inputList.some((inputElement) => {
 			return !inputElement.validity.valid;
@@ -77,7 +77,7 @@ export class FormValidator {
 		this._setEventListeners();
 	};
 
-	//метод очищающий ошибки и управляющий кнопкой
+	
 	resetValidation() {
 		this._toggleButtonState();
 
