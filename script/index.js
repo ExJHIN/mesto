@@ -88,7 +88,10 @@ profileForm.addEventListener('submit', (event, profileForm) => {
 });
 
 
-function resetNewCardInputs() {
+function resetNewCardInputs(buttonElement) {
+	buttonElement.setAttribute('disabled', true);
+	buttonElement.classList.remove('popup__button-valid');
+	buttonElement.classList.add('popup__button-invalid');
 	cardNameAddingInput.value = '';
 	cardLinkAddingInput.value = '';
 }
