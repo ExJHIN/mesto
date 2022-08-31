@@ -1,5 +1,3 @@
-
-
 export class Card {
 	constructor(data, clickHandlers) {
 		this._name = data.name;
@@ -50,13 +48,12 @@ export class Card {
 			if (event.target === this._trashButton || event.target === this._likeButton) {
 				return;
 			}
-
-			this._handleCardClick(event);
+			this._handleCardClick(this._name,this._imgLink);
 		});
 
 		
 		this._trashButton.addEventListener('click', () => this._handleDeleteClick());
-		this._likeButton.addEventListener('click', () => this._handleLikeClick());
+		this._likeButton.addEventListener('click', () => this._handleLikeClick()); //метод класса исп toggleLike
 	}
 
 	_createNode() {
