@@ -1,8 +1,7 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
-import {initialCards} from './constants.js';
-import {enableValidationProfile} from './constants.js'; 
-import {enableValidationAddCard} from './constants.js'; 
+import { initialCards } from './constants.js';
+import { enableValidationProfile } from './constants.js';
 const profileEditPopupNode = document.querySelector('.popup_edit_profile');
 const newCardPopupNode = document.querySelector('.popup_new_place');
 const cardsContainerNode = document.querySelector('.elements');
@@ -49,13 +48,21 @@ const element = document.querySelector('.element__img');
 const cardLinkAddingInput = newCardPopupNode.querySelector('.form__input_text_link');
 
 
+// Вызов валидации
 
+
+const formProfileValidator = new FormValidator(enableValidationProfile, profileForm);
+const formAddCardValidator = new FormValidator(enableValidationProfile, newCardForm);
+
+formProfileValidator.enableValidation();
+formAddCardValidator.enableValidation();
 
 const template = document.querySelector('#cardNode');
 // Слушатель на открытие popup по кнопке редактирования
 profileEditingButton.addEventListener('click', () => {
 	profileNameInput.value = profileName.textContent.trim();
 	profileDescriptionInput.value = profileDescription.textContent.trim();
+	formProfileValidator.resetValidation();
 	openPopup(profileEditPopupNode);
 });
 
@@ -63,7 +70,12 @@ profileCloseButton.addEventListener('click', () =>
 	closePopup(profileEditPopupNode)
 );
 // Слушатель на открытие popup по кнопке добавления карточки
-newCardButton.addEventListener('click', () => openPopup(newCardPopupNode));
+newCardButton.addEventListener('click', () => {
+	formAddCardValidator.resetValidation();
+	resetNewCardInputs();
+	openPopup(newCardPopupNode);
+
+});
 newCardCloseButton.addEventListener('click', () => {
 	closePopup(newCardPopupNode);
 });
@@ -74,9 +86,10 @@ newCardForm.addEventListener('submit', (event) => {
 		name: cardNameAddingInput.value,
 		imgLink: cardLinkAddingInput.value
 	});
-
+	newCardForm.reset();
 	renderCard(card.getNode(), cardsContainerNode);
 	closePopup(newCardPopupNode);
+	
 
 });
 
@@ -88,10 +101,7 @@ profileForm.addEventListener('submit', (event, profileForm) => {
 });
 
 
-function resetNewCardInputs(buttonElement) {
-	buttonElement.setAttribute('disabled', true);
-	buttonElement.classList.remove('popup__button-valid');
-	buttonElement.classList.add('popup__button-invalid');
+function resetNewCardInputs() {
 	cardNameAddingInput.value = '';
 	cardLinkAddingInput.value = '';
 }
@@ -104,12 +114,12 @@ function closePopupEsc(evt) {
 	if (evt.key === 'Escape') {
 		const popup = document.querySelector('.popup_opened');
 		closePopup(popup);
-		
+
 	}
 }
 
 function closePopupOverlay(evt) {
-	const popup =  evt.currentTarget;
+	const popup = evt.currentTarget;
 	if (evt.target === popup) {
 		closePopup(popup);
 	}
@@ -125,7 +135,6 @@ function closePopup(popup) {
 	popup.classList.remove('popup_opened');
 	document.removeEventListener('keydown', closePopupEsc);
 	popup.removeEventListener('click', closePopupOverlay);
-	resetNewCardInputs();
 }
 
 // Генерация карточек из массива
@@ -149,7 +158,7 @@ renderInitialCards(cardsContainerNode);
 
 
 
-function createCard({ name, imgLink,link}) {
+function createCard({ name, imgLink}) {
 	const card = new Card({
 		name,
 		imgLink,
@@ -164,15 +173,14 @@ function createCard({ name, imgLink,link}) {
 		}
 	}, {
 		cardClick: (name, imgLink) => {
-			openPopup(picturePopup); 
+			openPopup(picturePopup);
+			picturePopupImage.src = imgLink;
 
-			picturePopupImage.src = imgLink; 
-
-			picturePopupDescription.textContent = name; 
+			picturePopupDescription.textContent = name;
 
 			picturePopupImage.alt = name;
 
-			
+
 		},
 		deleteClick: () => {
 			card.dettach();
@@ -196,11 +204,4 @@ function createCard({ name, imgLink,link}) {
 
 
 
-// Вызов валидации
 
-
-const formProfileValidator = new FormValidator(enableValidationProfile, profileForm);
-const formAddCardValidator = new FormValidator(enableValidationAddCard, newCardForm);
-
-formProfileValidator.enableValidation();
-formAddCardValidator.enableValidation();
