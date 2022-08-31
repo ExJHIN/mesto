@@ -80,7 +80,9 @@ export class FormValidator {
 	
 	resetValidation() {
 		this._toggleButtonState();
-
+		this._buttonElement.setAttribute('disabled', true);
+		this._buttonElement.classList.remove('popup__button-valid');
+		this._buttonElement.classList.add('popup__button-invalid');
 		this._inputList.forEach((inputElement) => {
 			this._hideInputError(inputElement)
 		});
