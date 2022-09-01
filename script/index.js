@@ -127,7 +127,7 @@ function closePopupOverlay(evt) {
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
-	window.addEventListener('keydown', closePopupEsc);
+	document.addEventListener('keydown', closePopupEsc);
 	popup.addEventListener('click', closePopupOverlay);
 }
 
