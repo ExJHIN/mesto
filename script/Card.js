@@ -1,5 +1,3 @@
-
-
 export class Card {
 	constructor(data, clickHandlers) {
 		this._name = data.name;

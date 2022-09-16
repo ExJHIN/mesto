@@ -34,3 +34,13 @@ export const enableValidationProfile = {
 	buttonInvalid: 'popup__button-invalid',
 };
 
+export const enableValidationAddCard = {
+	formSelector: '.form_two',
+	inputSelector: '.form__input',
+	submitButtonSelector: '.form__save',
+	inactiveButtonClass: 'popup__button-invalid',
+	errorClass: 'popup__error_visible',
+	buttonValid: 'popup__button-valid',
+	buttonInvalid: 'popup__button-invalid',
+
+};
