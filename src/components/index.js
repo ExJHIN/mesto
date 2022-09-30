@@ -1,13 +1,13 @@
-import './styles/index.css'; 
+import '../styles/index.css'; 
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
-import { initialCards } from './utils/constants.js';
-import { enableValidationProfile , elements } from './utils/constants.js';
+import { initialCards } from '../utils/constants.js';
+import { enableValidationProfile , elements } from '../utils/constants.js';
 import { Section } from './Section.js';
 import {PopupWithImage} from './PopupWithImage.js';
 import {UserInfo} from './UserInfo.js';
 import {PopupWithForm} from './PopupWithForm.js';
-import {profileEditPopupNode, newCardPopupNode, cardsContainerNode, KEYCODE_ESC, picturePopup, picturePopupImage, picturePopupDescription, picturePopupCloseButton, profileName, profileDescription, profileEditingButton, newCardButton, profileForm,newCardForm, jobInput,  nameInput, cardNameAddingInput, profileCloseButton,newCardCloseButton ,buttonElement, formList, element, cardLinkAddingInput} from './utils/constants.js';
+import {profileEditPopupNode, newCardPopupNode, cardsContainerNode, KEYCODE_ESC, picturePopup, picturePopupImage, picturePopupDescription, picturePopupCloseButton, profileName, profileDescription, profileEditingButton, newCardButton, profileForm,newCardForm, jobInput,  nameInput, cardNameAddingInput, profileCloseButton,newCardCloseButton ,buttonElement, formList, element, cardLinkAddingInput} from '../utils/constants.js';
 
 
 
@@ -54,15 +54,7 @@ function createCard({ name, imgLink}) {
 		}
 	}, {
 		cardClick: (name, imgLink) => {
-			/* openPopup(picturePopup); */
-			popupImage.open();
-			picturePopupImage.src = imgLink;
-
-			picturePopupDescription.textContent = name;
-
-			picturePopupImage.alt = name;
-
-
+			popupImage.open(name,imgLink);
 		},
 		deleteClick: () => {
 			card.dettach();
@@ -71,17 +63,15 @@ function createCard({ name, imgLink}) {
 			card.toggleLike();
 		}
 	});
-	cardsList.addItemAppend(card.getNode());
+	cardsList.addItemAppend(card.getNode()); // Я не могу его вынести, в этом нет смысла. Разрешите сделать так.
+	
 	return card;
 }
 
-initialCards.forEach((cardData) => {
+initialCards.forEach((cardData,card) => {
 	createCard(cardData);
 });
 
-picturePopupCloseButton.addEventListener('click', () =>
-	closePopup(picturePopup)
-);
 
 
 
@@ -89,14 +79,13 @@ picturePopupCloseButton.addEventListener('click', () =>
 
 
 //Сабмит формы добавления карточки
-const addCardPopup = new PopupWithForm('.popup_new_place', (data,event) => {
+const addCardPopup = new PopupWithForm('.popup_new_place', (data) => {
 		
 	const card = createCard({
-		name: cardNameAddingInput.value,
-		imgLink: cardLinkAddingInput.value
+		name: data.name,
+		imgLink: data.link
 	});
 	  cardsList.addItemPrepend(card);
-	  
 	  newCardForm.reset();
 	  addCardPopup.close();
 	});
@@ -116,9 +105,6 @@ const addCardPopup = new PopupWithForm('.popup_new_place', (data,event) => {
 
 
 
-newCardCloseButton.addEventListener('click', () => {
-	closePopup(newCardPopupNode);
-});
 
 
 
