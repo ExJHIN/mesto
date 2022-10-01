@@ -11,11 +11,6 @@ import {profileEditPopupNode, newCardPopupNode, cardsContainerNode, KEYCODE_ESC,
 
 
 
-//Генерация контейнера
-const cardsList = new Section({
-	elements: elements,
-	renderer: createCard
-  },'.elements');
 
 
 
@@ -36,6 +31,14 @@ const formAddCardValidator = new FormValidator(enableValidationProfile, newCardF
 
 formProfileValidator.enableValidation();
 formAddCardValidator.enableValidation();
+
+//Генерация контейнера
+const cardsList = new Section({elements: initialCards, renderer: createCard},'.elements' );
+
+
+
+
+
 
 //Функция создания карточки
 function createCard({ name, imgLink}) {
@@ -63,27 +66,29 @@ function createCard({ name, imgLink}) {
 			card.toggleLike();
 		}
 	});
-	cardsList.addItemAppend(card.getNode()); // Я не могу его вынести, в этом нет смысла. Разрешите сделать так.
-	
-	return card;
+	return card.getNode();
 }
 
-initialCards.forEach((cardData,card) => {
-	createCard(cardData);
-});
 
 
 
+
+initialCards.forEach(({ name, imgLink}) => {
+	const card = createCard({
+		name,
+		imgLink,
+	})
+	cardsList.addItemAppend(card);
+  }) 
 
 
 
 
 //Сабмит формы добавления карточки
 const addCardPopup = new PopupWithForm('.popup_new_place', (data) => {
-		
 	const card = createCard({
 		name: data.name,
-		imgLink: data.link
+		imgLink: data.url
 	});
 	  cardsList.addItemPrepend(card);
 	  newCardForm.reset();

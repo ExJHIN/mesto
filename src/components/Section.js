@@ -7,15 +7,17 @@ export class Section {
   
     renderItems() {
         this._elements.forEach(element => {
-          this.addItem(this._renderer(element))
+          this.addItem(this._renderer(element.getNode()));             
+          this._container.append(element.getNode());
         })
+        
     }
   
     addItemPrepend(element) {
-      this._container.prepend(element.getNode())
+      this._container.prepend(element)
     }
   
     addItemAppend(element) {
-      this._container.append(element)
+      this._container.append(element);
     }
   }

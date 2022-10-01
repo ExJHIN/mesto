@@ -12,7 +12,6 @@ export class PopupWithImage extends Popup {
   //перезаписываем родительский метод
   open(name,imgLink) {
 
-    console.log(imgLink);
     this._place.src = imgLink;
     this._place.alt = 'На изображении ' + name;
     this._fullPictureTitle.textContent = name;

@@ -34,7 +34,7 @@ export const enableValidationProfile = {
 	buttonInvalid: 'popup__button-invalid',
 };
  export const name = 'User';
-export const elements = [];
+
 export const enableValidationAddCard = {
 	formSelector: '.form_two',
 	inputSelector: '.form__input',
