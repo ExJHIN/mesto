@@ -56,9 +56,7 @@ export class Card {
 	}
 
 	_createNode() {
-		this._node = this._cardTemplate
-			.cloneNode(true)
-			.querySelector(this._selectors.innerContent);	//Клонируется только нода которая непосредственно лежит в нем (Li), 
+		this._node = this._cardTemplate.querySelector(this._selectors.innerContent).cloneNode(true);	//Клонируется только нода которая непосредственно лежит в нем (Li), 
 
 		this._img = this._node.querySelector(this._selectors.img);
 		this._img.setAttribute('src', this._imgLink);
