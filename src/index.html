@@ -21,16 +21,15 @@
 			<main class="content">
 				<section class="profile">
 					<div class="container">
-						<div class="profile__body">
-							<div class="profile__avatar">
+						<section class="profile__body">
+							<button class="profile__avatar"  type="button" alt="Фотография пользователя">
 								<img
 									class="profile__avatar-image"
-									src="<%=require('./images/video-game-devushka-bandana-akali-dym-kepka-oruzhie-league-o.jpg')%>"
+									src="https://steamuserimages-a.akamaihd.net/ugc/974352614525636610/CE79B803DDB615BF5767ADC59D52C0FFF439AF86/?imw=512&amp;imh=512&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true"
 									alt="Аватар
 									пользователя"
 									/>
-								<button class="profile__avatar-btn" type="button"></button>
-							</div>
+							</button>
 							<div class="profile__info">
 								<h1 class="profile__title" title="Имя" placeholder="Имя">User name</h1>
 								<button
@@ -44,7 +43,7 @@
 									alt="Кнопка профиля"
 									/>
 							</button>
-						</div>
+						</section>
 					</div>
 				</section>
 				<section>
@@ -60,6 +59,7 @@
 											class="element__like-btn"
 											type="button"
 										></button>
+										<span class="element__like-count"></span>
 									</div>
 								</div>
 							</li>
@@ -90,7 +90,7 @@
 						<input
 							class="form__input form__input_text_descr"
 							type="text"
-							name="description"
+							name = "about"
 							placeholder="Описание"
 							minlength="2"
 							maxlength="200"
@@ -127,7 +127,7 @@
 						<input
 							class="form__input form__input_text_link"
 							type="url"
-							name="url"
+							name="link"
 							id="url-input"
 							title="Ссылка на картинку"
 							placeholder="Ссылка"
@@ -146,6 +146,51 @@
 					</button>
 				</div>
 			</div>
+
+			<div class="popup popup_change-avatar">
+				<div class="popup__body">
+					<form class="form form_two" name="formNameTwo" novalidate>
+						<h2 class="form__title">Обновить аватар</h2>
+						<input
+							class="form__input form__input_text_link"
+							type="url"
+							name="avatar"
+							id="urL-input"
+							title="Ссылка на картинку"
+							placeholder="Ссылка"
+							novalidate
+							required
+							/>
+						<span class="form__input-error popup__error urL-input-error"></span>
+						<button class="form__save popup__button-invalid form__save-add" type="submit" >
+							Сохранить
+						</button>
+					</form>
+					<button
+						class="popup__close popup__close_button_place"
+						type="button">
+
+					</button>
+				</div>
+			</div>
+
+
+
+
+
+
+
+			<div class="popup popup_delete">
+				<div class="popup__container">
+				  <button class="popup__close popup__close_new-place" type="button"></button>
+				  <h2 class="popup__title popup__title_delete">Вы уверены?</h2>
+				  <form class="form popup__form popup__form_new-place" name="form" novalidate
+				  required>
+					<button type="submit" class="form__save popup__submit-delete">Да</button> 
+				  </form>
+				</div>
+			</div>
+
 			<div class="popup popup_open_popup">
 				<div class="popup__picture-container">
 					<figure class="popup__figure">

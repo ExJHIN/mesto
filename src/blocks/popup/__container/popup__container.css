@@ -1,0 +1,20 @@
+.popup__container {
+    position: relative;
+    width: 34%;
+    max-width: 430px;
+    background: white;
+    border-radius: 10px;
+    padding: 34px 36px 37px;
+    color: black;
+    font-family: 'Inter', Arial, sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, .15);
+  }
+  
+  @media screen and (max-width: 757px) {
+    .popup__container {
+      max-width: 282px;
+      width: 88%;
+      padding: 25px 22px;
+    }
+  }

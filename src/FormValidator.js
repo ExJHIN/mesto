@@ -1,5 +1,3 @@
-import { enableValidationAddCard } from "../utils/constants";
-
 export class FormValidator {
 	constructor(settings, form) {
 		this._form = form;
@@ -83,8 +81,8 @@ export class FormValidator {
 	resetValidation() {
 		this._toggleButtonState();
 		this._buttonElement.setAttribute('disabled', true);
-		this._buttonElement.classList.remove(enableValidationAddCard.buttonValid);
-		this._buttonElement.classList.add(enableValidationAddCard.inactiveButtonClass);
+		this._buttonElement.classList.remove('popup__button-valid');
+		this._buttonElement.classList.add('popup__button-invalid');
 		this._inputList.forEach((inputElement) => {
 			this._hideInputError(inputElement)
 		});

@@ -4,8 +4,9 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+  
   entry: {
-    main: './src/components/index.js'
+    main: './src/index.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -19,6 +20,7 @@ module.exports = {
     compress: true,
     port: 8080
   },
+  
   module: {
     rules: [{
         test: /\.js$/,
@@ -42,6 +44,7 @@ module.exports = {
       },
     ]
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html'
