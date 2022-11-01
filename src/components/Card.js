@@ -2,7 +2,6 @@ export class Card {
 	constructor(data, clickHandlers,handleCardClick,handleDeleteClick,userId) {
 		
 		this._name = data.name;
-		
 		this._imgLink = data.imgLink;
 		this._innerCardTemplateSelector = data.innerCardTemplateSelector;
 		this._selectors = data.selectors;
@@ -10,9 +9,7 @@ export class Card {
 		this._handleDeleteClick = clickHandlers.deleteClick;
 		this._handleLikeClick = clickHandlers.likeClick;
 		this._userId = data.userId;
-		
 		this._likes = data.likes;
-		
 		this._ownerId = data.ownerId;
 		this._node = null;
 		this._likeButton = null;
@@ -38,7 +35,6 @@ export class Card {
 		return this._node;
 	}
 
-
 	blockCard() {
 		if(this._ownerId !== this._userId) {
 			this._node.querySelector('.element__trash-btn').style.display = 'none'
@@ -50,9 +46,6 @@ export class Card {
 		this._node.remove();
 	}
 
-
-
-
 	_fillLike = () => {
 		this._likeButton = this._node.querySelector(this._selectors.likeButton);
 		this._likeButton.classList.add(this._selectors.likeButtonActive);
@@ -63,10 +56,6 @@ export class Card {
 		 this._likeButton.classList.remove(this._selectors.likeButtonActive);
 		}
 
-	toggleLike() {
-		this._likeButton.classList.toggle(this._selectors.likeButtonActive);
-		this._isLiked = false;
-	}
 	setLikes(newLikes) {
 		this._likes = newLikes;
 		const likeCounElement = this._node.querySelector('.element__like-count');
@@ -86,9 +75,7 @@ export class Card {
 			}
 			this._handleCardClick(this._name,this._imgLink);
 		});
-
-		
-		 this._trashButton.addEventListener('click', () => this._handleDeleteClick(this._id)); 
+		this._trashButton.addEventListener('click', () => this._handleDeleteClick(this._id)); 
 		this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id)); //метод класса исп toggleLike
 	}
 	isLiked(){
@@ -107,7 +94,6 @@ export class Card {
 		this._img.setAttribute('alt', this._name);
 
 		this._node.querySelector(this._selectors.title).textContent = this._name;
-		
 		
 		this._trashButton = this._node.querySelector(this._selectors.trashButton);
 		this._likeButton = this._node.querySelector(this._selectors.likeButton); 

@@ -11,15 +11,15 @@
       getProfile(){
         return fetch(`${this._baseUrl}/users/me`,{
           headers: this._headers
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus());
+        
       }
     
       getInitialCards() {
         return fetch(`${this._baseUrl}/cards`,{
           headers: this._headers
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+        
       }
     
       editProfile(name,about) {
@@ -30,8 +30,8 @@
             name,
             about
           })
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+       
       }
     
       addImage(name,link) {
@@ -42,32 +42,33 @@
             name,
             link
           })
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+        
       }
     
       deleteCard(id) {
         return fetch(`${this._baseUrl}/cards/${id}`,{
           method: "DELETE",
           headers: this._headers,
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+        
       }
     
       deleteLike(id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`,{
           method: "DELETE",
           headers: this._headers,
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+        
       }
+        
     
       addLike(id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`,{
           method: "PUT",
           headers: this._headers,
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+       
       }
     
       editAvatar( avatar ) {
@@ -77,11 +78,14 @@
           body: JSON.stringify({
             avatar,
           })
-        }).then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        }).then(this._checkStatus())
+        
       }
+      _checkStatus() {
+        return res => res.ok ? res.json() : Promise.reject(res.status); 
+      } 
     }
-  
+ 
   
   export const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-52',

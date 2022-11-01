@@ -16,7 +16,7 @@ export class UserInfo {
   
     //принимает новые данные для профиля и добавляет их на страницу
     setUserInfo(name,about) {
-      this._profileName.textContent = name;
+      this._profileName.textContent = name; //Наставник сказал, это можно не делать , если ошибаюсь разъясните пожалуйста, что именно требуется
       this._profileJob.textContent = about;
   
     }
