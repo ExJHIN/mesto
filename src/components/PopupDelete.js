@@ -4,7 +4,7 @@ export class PopupDelete extends Popup {
   constructor(popupSelector, confirmPopup) {
     super(popupSelector)
     this._confirmPopup = confirmPopup;
-    this._deleteButton = this._popupSelector.querySelector('.form__save')
+    this._deleteButton = this._popupElement.querySelector('.form__save')
   }
 
   changeSubmitHandler(newSubmitHandler) {

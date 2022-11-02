@@ -75,6 +75,7 @@ export class Card {
 			}
 			this._handleCardClick(this._name,this._imgLink);
 		});
+		
 		this._trashButton.addEventListener('click', () => this._handleDeleteClick(this._id)); 
 		this._likeButton.addEventListener('click', () => this._handleLikeClick(this._id)); //метод класса исп toggleLike
 	}

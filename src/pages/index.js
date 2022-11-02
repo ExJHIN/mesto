@@ -14,27 +14,25 @@ import {api} from '../components/Api.js';
 let userId;
 
 const cardsList = new Section({
-	elements: elements,
-	renderer: createCard
+	renderer: (data) => {
+		cardsList.addItem(createCard({
+			name: data.name,
+			imgLink: data.link,
+			likes: data.likes,
+			id: data._id,
+			userId: userId,
+			ownerId: data.owner._id
+		  }));
+	  }
   },'.elements');
+  
 //Генерация контейнера
   api.getInfo()
   .then(([elements, res]) => {
     userId = res._id
     dataUserInfo.setUserInfo(res.name, res.about,)
     dataUserInfo.setAvatarInfo(res.avatar);
-	cardsList.renderItems(elements);
-	elements.forEach((data) => {
-      const card = createCard({
-        name: data.name,
-        imgLink: data.link,
-        likes: data.likes,
-        id: data._id,
-        userId: userId,
-        ownerId: data.owner._id
-      })
-      cardsList.addItemAppend(card.getNode());
-    })
+	cardsList.renderItems(elements); 
   })
   .catch((err) => {
     console.log(err);
@@ -71,7 +69,7 @@ formAddCardValidator.enableValidation();
  editAvatarValidator.enableValidation(); 
 //Функция создания карточки
 
- function createCard({ name, imgLink,id,data, userId,ownerId,likes},) {
+ function createCard({ name, imgLink,id,data, userId,ownerId,likes}) {
 	
 	const card = new Card({	
 		name,
@@ -92,15 +90,8 @@ formAddCardValidator.enableValidation();
 			deleteButton:'.form__save-add'
 		},
 	},  {
-		cardClick: (name, imgLink) => {
-			
-			popupImage.open(name, imgLink);
-			picturePopupImage.src = imgLink;
-
-			picturePopupDescription.textContent = name;
-
-			picturePopupImage.alt = name;
-
+		cardClick: (name, imgLink) => {	
+			popupImage.open({name, imgLink});
 		},
 		deleteClick: (id) => {
 			popupConfirmation.open();
@@ -110,6 +101,9 @@ formAddCardValidator.enableValidation();
 				card.dettach(); 
 				popupConfirmation.close();
 				})
+				.catch((err) => {
+					console.log(err);
+				  })
 				
 			  })
 			  
@@ -125,6 +119,9 @@ formAddCardValidator.enableValidation();
 				.then(res => {
 				  card.setLikes(res.likes)
 				})
+				.catch((err) => {
+					console.log(err);
+				  })
 				}	
 		},
 	});

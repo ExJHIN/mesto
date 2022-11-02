@@ -1,6 +1,6 @@
 export class Popup {
     constructor(popupSelector) {
-      this._popupSelector = document.querySelector(popupSelector);
+      this._popupElement = document.querySelector(popupSelector);
     }
   
     //метод, который реализует открытие по нажатию esc
@@ -11,7 +11,7 @@ export class Popup {
     }
   
     setEventListeners() {
-      this._popupSelector.addEventListener('mousedown', (event) => {
+      this._popupElement.addEventListener('mousedown', (event) => {
         if (event.target.classList.contains('popup_opened') || event.target.classList.contains('popup__close')) {
           this.close()
         }
@@ -20,14 +20,14 @@ export class Popup {
   
     //метод открытия попапа
     open() {
-      this._popupSelector.classList.add('popup_opened');
+      this._popupElement.classList.add('popup_opened');
   
       document.addEventListener('keydown', this._handleEscClose);
     }
   
     //метод закрытия попапа
     close() {
-      this._popupSelector.classList.remove('popup_opened');
+      this._popupElement.classList.remove('popup_opened');
       document.removeEventListener('keydown', this._handleEscClose);
     }
   }
